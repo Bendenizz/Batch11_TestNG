@@ -1,9 +1,11 @@
 package com.techproed.tests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -18,11 +20,16 @@ public class D12_IFrame {
         driver.manage().window().maximize();
     }
     @Test
-    public void iFrameTest(){
+    public void iFrameTest() throws InterruptedException {
         driver.get("https://html.com/tags/iframe/");
         //1.adim iFrame'e nasil gecis yapacagimiza(switch) karar veririz
         //  index,id,webElement olarak locate ederiz
         //  biz bu soruda 3.yolu tercih ettik
+        Thread.sleep(5000);
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
         WebElement iFrame=driver.findElement(By.xpath("//iframe[@class='lazy-loaded']"));
         // 2. adim iFrame'e switchTo() ile gecis yapiyoruz
         driver.switchTo().frame(iFrame);
